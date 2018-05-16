@@ -1,0 +1,35 @@
+Explanations of some important things:
+
+HOW THE FEN TRANSLATION WORKS
+Example FEN string: rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1
+
+For field 1 (each area between slashes is a row, each number represents some number of empty spaces):
+rnbqkbnr->numbers representing the black pieces (not pawns) (negative numbers)
+pppppppp->numbers representing the black pawns (eight negative ones)
+8->eight empty spaces (eight zeroes)
+8->eight more empty spaces (eight more zeroes)
+4P3->four empty spaces, a white pawn, and three empty spaces (four zeroes, a positive one, and three zeroes)
+8->eight more empty spaces
+PPPP1PPP->four white pawns, an empty spaces, and three white pawns (four positive ones, a zero, and three positive ones)
+RNBQKBNR->numbers representing the white non-pawn pieces (all positive)
+
+For field 2 (castling availability):
+KQkq->1111 (both sides have castling availability, queeside and kingside, so all four possible options are 'true')
+
+for field 3 (en passant availability):
+e3->53(5 representing the e coordinate, and 3 representing 3)
+
+for field 4 (half-move clock):
+0->0 (just the number itself)
+
+for field 5 (move counter):
+1->1 (just the number itself)
+
+Since all fields will always be the same length (and since the int array will always be the same length), the computer 
+will always know where in the array to look for certain pieces of information. Examples: the computer will always 
+be able to find the move counter at the end of the array (bdarr[72], I think), information on castling availability at the
+indices bdarr[64], bdarr[65], bdarr[66], and bdarr[67], information on, say, the first row of the board at the indices
+bdarr[0, 1, 2, 3, 4, 5, 6, 7], etc. etc.
+
+It's basically just FEN translated into an int array with constant length (and constant length of its fields). More convenient
+for the neural net to read.
