@@ -127,14 +127,14 @@ int ruleprocess(int pc, int row, int col);
 int possmovecalc ();
 double exemplifyfxn();
 int net_init();
-int net_init2();
-int fillfront();
-int fire();
+int net_init2(neuron **array);
+int fillfront(neuron **array);
+int fire(neuron **array);
 int biascalc();
 double sigmoid1(int val);
 double sigmoid2(double val);
 double randomz1();
-double decomp(double d1, double d2, double d3);
+double decomp(neuron **array);
 double compare ();
 
 
